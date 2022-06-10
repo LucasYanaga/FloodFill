@@ -28,7 +28,6 @@ public class Main extends JPanel implements ActionListener {
         File[] files = dir.listFiles();
         File[] filesArray = new File[files.length];
 
-
         for (int i = 0; i < files.length; i++) {
             for (int j = 0; j < files.length; j++) {
                 String s = files[j].getName();
@@ -48,18 +47,6 @@ public class Main extends JPanel implements ActionListener {
         for (int i = 1; i < numImages; i++) {
             main_images[i] = ImageIO.read(filesArray[i]);
         }
-
-        /*
-        for(File file: dir.listFiles()){
-            BufferedImage image2 = ImageIO.read(file);
-            animation.add(image2);
-        }
-
-        main_images = new BufferedImage[numImages];
-        for(int i=0;i<numImages;i++){
-            main_images[i]= animation.get(i);
-        }
-        */
 
         startAnimation();
     }
