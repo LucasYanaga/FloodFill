@@ -6,6 +6,7 @@ import java.awt.event.*;
 import java.awt.image.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main extends JPanel implements ActionListener {
     BufferedImage [] main_images=null;
@@ -23,17 +24,43 @@ public class Main extends JPanel implements ActionListener {
         ff.floodFill(bufferedImage, start, Color.MAGENTA);
         ArrayList<BufferedImage> animation = new ArrayList<>();
         File dir = new File("./images");
+
+        File[] files = dir.listFiles();
+        File[] filesArray = new File[files.length];
+
+
+        for (int i = 0; i < files.length; i++) {
+            for (int j = 0; j < files.length; j++) {
+                String s = files[j].getName();
+                s = s.substring(s.indexOf("e") + 1);
+                s = s.substring(0, s.indexOf("."));
+                if(s.equals(String.valueOf(i))){
+                    filesArray[i] = files[j];
+                    System.out.println(filesArray[i]);
+                }
+            }
+        }
+
+        numImages = files.length;
+        System.out.println(numImages);
+        main_images = new BufferedImage[numImages];
+
+        for (int i = 1; i < numImages; i++) {
+            main_images[i] = ImageIO.read(filesArray[i]);
+        }
+
+        /*
         for(File file: dir.listFiles()){
             BufferedImage image2 = ImageIO.read(file);
             animation.add(image2);
         }
 
-        numImages = animation.size();
         main_images = new BufferedImage[numImages];
-        System.out.println(numImages);
         for(int i=0;i<numImages;i++){
             main_images[i]= animation.get(i);
         }
+        */
+
         startAnimation();
     }
 
