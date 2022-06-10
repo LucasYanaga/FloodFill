@@ -22,7 +22,6 @@ public class Main extends JPanel implements ActionListener {
         FloodFill ff = new FloodFill();
         Coordinate start = new Coordinate(499, 0);
         ff.floodFill(bufferedImage, start, Color.MAGENTA);
-        ArrayList<BufferedImage> animation = new ArrayList<>();
         File dir = new File("./images");
 
         File[] files = dir.listFiles();
